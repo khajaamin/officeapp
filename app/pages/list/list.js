@@ -1,6 +1,6 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {ItemDetailsPage} from '../item-details/item-details';
-import {AddNotePage} from './pages/add-note/add-note';
+import {AddNotePage} from '../add-note/add-note';
 
 
 @Page({
