@@ -1,0 +1,37 @@
+<ion-navbar *navbar>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Case List</ion-title>
+    <ion-buttons end>
+    <button royal >
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-navbar>
+<ion-toolbar primary>
+    <ion-buttons start>
+        <button royal>
+            <ion-icon name="ios-arrow-dropleft"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title>{{selectedDate}}</ion-title>
+    
+    <ion-buttons end>
+        <button royal>
+            <ion-icon name="ios-arrow-dropright"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-toolbar>
+<ion-content>
+    <ion-list>
+        <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+
+        {{item.court_name}}
+
+    </button>
+</ion-list>
+<div *ngIf="selectedItem" padding>
+    Test <b>{{selectedItem.title}}</b>
+</div>
+</ion-content>

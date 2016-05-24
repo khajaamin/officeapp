@@ -1,0 +1,39 @@
+<ion-navbar *navbar>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Add Note</ion-title>
+</ion-navbar>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Select Previous Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Court Name</ion-label>
+      <ion-input type="text"   ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>First Party Name</ion-label>
+      <ion-input type="text"   ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Second Party Name</ion-label>
+      <ion-input type="text"  ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Select Next Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" ></ion-datetime>
+    </ion-item>
+      
+    <button type="submit" full>Create</button>
+     
+      
+  </ion-list>
+  
+</ion-content>
