@@ -6,34 +6,41 @@
 </ion-navbar>
 
 <ion-content>
+
+<form   name="noteForm" (ngSubmit)="save(noteForm)"  #heroForm="ngForm" novalidate>
   <ion-list>
     <ion-item>
       <ion-label>Select Previous Date</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="note.prious_date" ngControl="prious_date"  required></ion-datetime>
+
     </ion-item>
     <ion-item>
       <ion-label floating>Court Name</ion-label>
-      <ion-input type="text"   ></ion-input>
+        <ion-input type="text" [(ngModel)]="note.court_name" ngControl="court_name" #court_name="ngForm"  required>
+        
+      </ion-input>
+      {{court_name}}
+
     </ion-item>
 
     <ion-item>
       <ion-label floating>First Party Name</ion-label>
-      <ion-input type="text"   ></ion-input>
+      <ion-input type="text"  [(ngModel)]="note.first_party_name" ngControl="first_party_name"  required ></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Second Party Name</ion-label>
-      <ion-input type="text"  ></ion-input>
+      <ion-input type="text" [(ngModel)]="note.second_party_name" ngControl="second_party_name"  required ></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Select Next Date</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" ></ion-datetime>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="note.next_date" ngControl="next_date"  required ></ion-datetime>
     </ion-item>
       
-    <button type="submit" full>Create</button>
+    <button [disabled]="!heroForm.form.valid" type="submit" full>Create</button>
      
       
   </ion-list>
-  
+  </form>
 </ion-content>

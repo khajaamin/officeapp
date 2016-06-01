@@ -58,6 +58,8 @@
 		B787DE1E6FFD40A9B2A6872C /* UNIHTTPStringResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB9F38A8034203B2F8D9D3 /* UNIHTTPStringResponse.m */; };
 		FCA52DF7227545CBAE6E3B8E /* UNIJsonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A1619BC96E48048E1DD050 /* UNIJsonNode.m */; };
 		6A46E76F97A6464CAA27D594 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4B0453373441968BCCA331 /* IonicKeyboard.m */; };
+		7DAE3EB512FE497B8C5BBFA5 /* SQLitePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F582D197EA42D388C93834 /* SQLitePlugin.m */; };
+		B417948569C64075BEF04C42 /* sqlite3.c in Resources */ = {isa = PBXBuildFile; fileRef = 6C82239BD28746C0A1BF9ACD /* sqlite3.c */; settings = {COMPILER_FLAGS = "-DSQLITE_TEMP_STORE=2 -DSQLITE_THREADSAFE=2 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_COLUMN_METADATA -DSQLITE_ENABLE_RTREE -DSQLITE_LOCKING_STYLE=1 -DSQLITE_OMIT_BUILTIN_TEST -DSQLITE_OMIT_LOAD_EXTENSION"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +184,10 @@
 		63E76028125D4A55BC7CE920 /* UNIJsonNode.h */ = {isa = PBXFileReference; name = "UNIJsonNode.h"; path = "ionic-plugin-deploy/UNIJsonNode.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		CE4B0453373441968BCCA331 /* IonicKeyboard.m */ = {isa = PBXFileReference; name = "IonicKeyboard.m"; path = "ionic-plugin-keyboard/IonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		0201AFF7708449A0A1F2F093 /* IonicKeyboard.h */ = {isa = PBXFileReference; name = "IonicKeyboard.h"; path = "ionic-plugin-keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		98F582D197EA42D388C93834 /* SQLitePlugin.m */ = {isa = PBXFileReference; name = "SQLitePlugin.m"; path = "cordova-sqlite-storage/SQLitePlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		6C82239BD28746C0A1BF9ACD /* sqlite3.c */ = {isa = PBXFileReference; name = "sqlite3.c"; path = "cordova-sqlite-storage/sqlite3.c"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		50E50483D08C4C45ADE0C436 /* SQLitePlugin.h */ = {isa = PBXFileReference; name = "SQLitePlugin.h"; path = "cordova-sqlite-storage/SQLitePlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		296F764F7EA84A6697DE2CF7 /* sqlite3.h */ = {isa = PBXFileReference; name = "sqlite3.h"; path = "cordova-sqlite-storage/sqlite3.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +375,10 @@
 				63E76028125D4A55BC7CE920 /* UNIJsonNode.h */,
 				CE4B0453373441968BCCA331 /* IonicKeyboard.m */,
 				0201AFF7708449A0A1F2F093 /* IonicKeyboard.h */,
+				98F582D197EA42D388C93834 /* SQLitePlugin.m */,
+				6C82239BD28746C0A1BF9ACD /* sqlite3.c */,
+				50E50483D08C4C45ADE0C436 /* SQLitePlugin.h */,
+				296F764F7EA84A6697DE2CF7 /* sqlite3.h */,
 			);
 			name = Plugins;
 			path = "MyIonic2Project/Plugins";
@@ -526,6 +536,8 @@
 				B787DE1E6FFD40A9B2A6872C /* UNIHTTPStringResponse.m in Sources */,
 				FCA52DF7227545CBAE6E3B8E /* UNIJsonNode.m in Sources */,
 				6A46E76F97A6464CAA27D594 /* IonicKeyboard.m in Sources */,
+				7DAE3EB512FE497B8C5BBFA5 /* SQLitePlugin.m in Sources */,
+				B417948569C64075BEF04C42 /* sqlite3.c in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

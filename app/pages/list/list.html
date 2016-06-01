@@ -4,7 +4,7 @@
     </button>
     <ion-title>My Case List</ion-title>
     <ion-buttons end>
-    <button royal >
+    <button royal   (click)="openPage()">
             <ion-icon name="add"></ion-icon>
         </button>
     </ion-buttons>
@@ -23,15 +23,56 @@
         </button>
     </ion-buttons>
 </ion-toolbar>
+
 <ion-content>
-    <ion-list>
-        <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
 
-        {{item.court_name}}
+<ion-searchbar [(ngModel)]="searchQuery" (input)="getItems($event)"></ion-searchbar>
 
-    </button>
+<ion-list>
+  <ion-item-sliding   *ngFor="let item of notes " >
+
+
+    <ion-item>
+      <!-- <ion-avatar item-left>
+        <img src="img/spengler.jpg">
+      </ion-avatar> -->
+      <h2>
+          {{item.court_name}}
+
+      </h2>
+
+<h3>{{item.first_party_name}} vs {{item.second_party_name}}</h3>
+    <p>{{item.case_stage}}</p>
+     <button clear item-right (click)="itemTapped($event, item)" >View</button>
+
+    </ion-item>
+    <ion-item-options>
+      <button primary>
+        <ion-icon name="text"></ion-icon>
+        Comment
+      </button>
+      <button secondary>
+        <ion-icon name="call"></ion-icon>
+        Call
+                <ion-select [(ngModel)]="gaming">
+                  <ion-option value="nes">First Party</ion-option>
+                  <ion-option value="n64">Second Party</ion-option>
+                </ion-select>
+
+      </button>
+
+  
+
+    </ion-item-options>
+  </ion-item-sliding>
 </ion-list>
-<div *ngIf="selectedItem" padding>
-    Test <b>{{selectedItem.title}}</b>
-</div>
+
+
+
+
+
+
+
+
+
 </ion-content>

@@ -2,15 +2,46 @@
   <button menuToggle *ngIf="!selectedItem">
     <ion-icon name="menu"></ion-icon>
   </button>
-  <ion-title>Item Details</ion-title>
+  <ion-title>Case Details</ion-title>
 </ion-navbar>
 
 <ion-content>
- <div *ngIf="selectedItem" class="selection">
-    <b>{{selectedItem.title}}</b>
-    <ion-icon name="{{selectedItem.icon}}"></ion-icon>
-    <div>
-      You navigated here from <b>{{selectedItem.title}}</b>
-    </div>
-  </div>
+<ion-slides pager>
+
+  <ion-slide   *ngFor="let item of notes">
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 
+      <ion-card>
+  <ion-item>
+    <ion-avatar item-left>
+      <img src="img/spengler.jpg">
+    </ion-avatar>
+    <h2>{{item.court_name}}</h2>
+    <p>{{item.next_date}} - </p>
+  </ion-item>
+  <ion-card-content>
+  <p>{{item.case_stage}}</p>
+  </ion-card-content>
+
+  <ion-item>
+    <button primary clear item-left>
+      <ion-icon name="thumbs-up"></ion-icon>
+      <div>12 Likes</div>
+    </button>
+    <button primary clear item-left>
+      <ion-icon name="text"></ion-icon>
+      <div>4 Comments</div>
+    </button>
+    <ion-note item-right>
+      11h ago
+    </ion-note>
+  </ion-item>
+
+</ion-card>
+
+
+
+  </ion-slide>
+
+
+</ion-slides>
 </ion-content>

@@ -44,13 +44,25 @@ var MyApp = (_dec = (0, _ionicAngular.App)({
     this.pages = [{ title: 'My Office Diary', component: _helloIonic.HelloIonicPage }, { title: 'My Note List', component: _list.ListPage }, { title: 'Add Note', component: _addNote.AddNotePage }];
 
     // make HelloIonicPage the root (or first) page
-    this.rootPage = _helloIonic.HelloIonicPage;
+    this.rootPage = _list.ListPage;
   }
 
   _createClass(MyApp, [{
     key: 'initializeApp',
     value: function initializeApp() {
+      var _this = this;
+
       this.platform.ready().then(function () {
+        console.log("in ready");
+
+        _this.storage = new _ionicAngular.Storage(_ionicAngular.SqlStorage);
+
+        _this.storage.query('CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY AUTOINCREMENT, prious_date TEXT, court_name TEXT, first_party_name TEXT, second_party_name TEXT, next_date TEXT, user_id INTEGER, app_id INTEGER, case_stage TEXT)').then(function (data) {
+          console.log("TABLE CREATED -> " + JSON.stringify(data.res));
+        }, function (error) {
+          console.log("ERROR -> " + JSON.stringify(error.err));
+        });
+
         // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.
         _ionicNative.StatusBar.styleDefault();
@@ -85,10 +97,15 @@ var _ionicAngular = require('ionic-angular');
 
 var _itemDetails = require('../item-details/item-details');
 
+var _common = require('@angular/common');
+
+var _list = require('../list/list');
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var AddNotePage = exports.AddNotePage = (_dec = (0, _ionicAngular.Page)({
-  templateUrl: 'build/pages/add-note/add-note.html'
+  templateUrl: 'build/pages/add-note/add-note.html',
+  styleUrl: 'style.css'
 }), _dec(_class = function () {
   _createClass(AddNotePage, null, [{
     key: 'parameters',
@@ -97,10 +114,18 @@ var AddNotePage = exports.AddNotePage = (_dec = (0, _ionicAngular.Page)({
     }
   }]);
 
-  function AddNotePage(nav, navParams) {
+  function AddNotePage(nav, navParams, platform) {
     _classCallCheck(this, AddNotePage);
 
     this.nav = nav;
+    this.note = {};
+
+    this.platform = _ionicAngular.Platform;
+    this.notes = [];
+    this.storage = new _ionicAngular.Storage(_ionicAngular.SqlStorage);
+    this.refresh();
+
+    this.storage.query("DELETE FROM users");
 
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
@@ -126,16 +151,40 @@ var AddNotePage = exports.AddNotePage = (_dec = (0, _ionicAngular.Page)({
     }
   }, {
     key: 'save',
-    value: function save(event) {
-      console.log(this.noteForm.value);
-      event.preventDefault();
+    value: function save(noteForm) {
+      var _this = this;
+
+      this.storage.query("INSERT INTO notes (case_stage, court_name,first_party_name,second_party_name) VALUES ('" + this.note.case_stage + "','" + this.note.court_name + "','" + this.note.first_party_name + "','" + this.note.second_party_name + "')").then(function (data) {
+        console.log('adde-new-note');
+        _this.nav.setRoot(_list.ListPage);
+      }, function (error) {
+        console.log("ERROR -> " + JSON.stringify(error.err));
+      });
+    }
+  }, {
+    key: 'refresh',
+    value: function refresh() {
+      var _this2 = this;
+
+      this.storage.query("SELECT * FROM notes").then(function (data) {
+        _this2.notes = [];
+        if (data.res.rows.length > 0) {
+
+          for (var i = 0; i < data.res.rows.length; i++) {
+
+            _this2.notes.push(data.res.rows.item(i));
+          }
+        }
+      }, function (error) {
+        console.log("ERROR -> " + JSON.stringify(error.err));
+      });
     }
   }]);
 
   return AddNotePage;
 }()) || _class);
 
-},{"../item-details/item-details":4,"ionic-angular":387}],3:[function(require,module,exports){
+},{"../item-details/item-details":4,"../list/list":5,"@angular/common":6,"ionic-angular":387}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -181,13 +230,38 @@ var ItemDetailsPage = exports.ItemDetailsPage = (_dec = (0, _ionicAngular.Page)(
     }
   }]);
 
-  function ItemDetailsPage(nav, navParams) {
+  function ItemDetailsPage(nav, navParams, platform) {
     _classCallCheck(this, ItemDetailsPage);
 
     this.nav = nav;
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
+
+    this.platform = _ionicAngular.Platform;
+    this.notes = [];
+    this.storage = new _ionicAngular.Storage(_ionicAngular.SqlStorage);
+    this.refresh();
   }
+
+  _createClass(ItemDetailsPage, [{
+    key: 'refresh',
+    value: function refresh() {
+      var _this = this;
+
+      this.storage.query("SELECT * FROM notes").then(function (data) {
+        _this.notes = [];
+        if (data.res.rows.length > 0) {
+
+          for (var i = 0; i < data.res.rows.length; i++) {
+
+            _this.notes.push(data.res.rows.item(i));
+          }
+        }
+      }, function (error) {
+        console.log("ERROR -> " + JSON.stringify(error.err));
+      });
+    }
+  }]);
 
   return ItemDetailsPage;
 }()) || _class);
@@ -214,18 +288,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var ListPage = exports.ListPage = (_dec = (0, _ionicAngular.Page)({
   templateUrl: 'build/pages/list/list.html'
+
 }), _dec(_class = function () {
   _createClass(ListPage, null, [{
     key: 'parameters',
     get: function get() {
-      return [[_ionicAngular.NavController], [_ionicAngular.NavParams]];
+      return [[_ionicAngular.NavController], [_ionicAngular.NavParams], [_ionicAngular.MenuController]];
     }
   }]);
 
-  function ListPage(nav, navParams) {
+  function ListPage(nav, navParams, platform, menu) {
     _classCallCheck(this, ListPage);
 
     this.nav = nav;
+    this.searchQuery = "";
+    this.menu = menu;
+
+    this.platform = _ionicAngular.Platform;
+    this.notes = [];
+    this.storage = new _ionicAngular.Storage(_ionicAngular.SqlStorage);
+    this.refresh();
 
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
@@ -245,9 +327,28 @@ var ListPage = exports.ListPage = (_dec = (0, _ionicAngular.Page)({
       });
     }
   }, {
+    key: 'refresh',
+    value: function refresh() {
+      var _this = this;
+
+      this.storage.query("SELECT * FROM notes").then(function (data) {
+        _this.notes = [];
+        if (data.res.rows.length > 0) {
+          for (var i = 0; i < data.res.rows.length; i++) {
+            _this.notes.push(data.res.rows.item(i));
+          }
+        }
+      }, function (error) {
+        console.log("ERROR -> " + JSON.stringify(error.err));
+      });
+    }
+  }, {
     key: 'openPage',
-    value: function openPage(page) {
-      console.log("openpage");
+    value: function openPage() {
+      // close the menu when clicking a link from the menu
+
+      // navigate to the new page if it is not the current page
+      this.nav.setRoot(_addNote.AddNotePage);
     }
   }]);
 

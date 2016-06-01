@@ -35,6 +35,13 @@ module.exports = [
             "cordova.plugins.Keyboard"
         ],
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+        "id": "cordova-sqlite-storage.SQLitePlugin",
+        "clobbers": [
+            "SQLitePlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -46,7 +53,8 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.1.3",
     "cordova-plugin-whitelist": "1.2.2",
     "ionic-plugin-deploy": "0.5.4",
-    "ionic-plugin-keyboard": "2.2.0"
+    "ionic-plugin-keyboard": "2.2.0",
+    "cordova-sqlite-storage": "1.4.1"
 };
 // BOTTOM OF METADATA
 });
