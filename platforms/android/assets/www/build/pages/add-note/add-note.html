@@ -11,16 +11,13 @@
   <ion-list>
     <ion-item>
       <ion-label>Select Previous Date</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="note.prious_date" ngControl="prious_date"  required></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="note.prious_date" ngControl="prious_date"  required></ion-datetime>
 
     </ion-item>
     <ion-item>
       <ion-label floating>Court Name</ion-label>
-        <ion-input type="text" [(ngModel)]="note.court_name" ngControl="court_name" #court_name="ngForm"  required>
-        
+        <ion-input type="text" [(ngModel)]="note.court_name" ngControl="court_name"  required>
       </ion-input>
-      {{court_name}}
-
     </ion-item>
 
     <ion-item>
@@ -34,11 +31,26 @@
     </ion-item>
 
     <ion-item>
+      <ion-label floating>Case Stage</ion-label>
+      <ion-textarea type="text" [(ngModel)]="note.case_stage" ngControl="case_stage"  required ></ion-textarea>
+    </ion-item>
+
+    <ion-item>
       <ion-label>Select Next Date</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="note.next_date" ngControl="next_date"  required ></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="note.next_date" ngControl="next_date"  required ></ion-datetime>
     </ion-item>
       
-    <button [disabled]="!heroForm.form.valid" type="submit" full>Create</button>
+    <button [disabled]="!heroForm.form.valid" type="submit" full>
+
+    <span *ngIf="!note.id" >Create</span>
+    <span  *ngIf="note.id"  >Update</span>
+
+
+    </button>
+    
+
+
+    <button  type="button"  (click) = "truncateNotes()" full>Truncate Notes Table</button>
      
       
   </ion-list>

@@ -36,7 +36,10 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "ionic-plugin-deploy",
-    "cordova-sqlite-storage"
+    "cordova-sqlite-storage",
+    "de.appplant.cordova.plugin.local-notification",
+    "cordova-plugin-spinner-dialog",
+    "cordova-plugin-email-composer"
   ],
   "cordovaPlatforms": [
     "android"

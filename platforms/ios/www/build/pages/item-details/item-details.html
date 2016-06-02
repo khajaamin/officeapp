@@ -6,42 +6,65 @@
 </ion-navbar>
 
 <ion-content>
-<ion-slides pager>
+    
+    <ion-card  (swipe)="tapEvent($event,note)">
 
-  <ion-slide   *ngFor="let item of notes">
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 
-      <ion-card>
+
+
+  <ion-item>
+      <h2 text-center>{{note.court_name}}</h2>
+      <p text-right> {{note.next_date}}</p>
+  </ion-item>
+
+
   <ion-item>
     <ion-avatar item-left>
-      <img src="img/spengler.jpg">
+        <img src="img/marty-avatar.png">
+    
     </ion-avatar>
-    <h2>{{item.court_name}}</h2>
-    <p>{{item.next_date}} - </p>
+        <p>{{note.first_party_name}}</p>
+  
   </ion-item>
+  <ion-item>
+    <h2 text-center>VS</h2>
+  </ion-item>
+
+  <ion-item>
+    <p>{{note.second_party_name}}</p>
+    <ion-avatar item-right>
+        <img src="img/marty-avatar.png">
+        
+    </ion-avatar>
+
+    </ion-item>
+
+  
+
   <ion-card-content>
-  <p>{{item.case_stage}}</p>
+    <ion-label>Case Stage</ion-label>
+      <p>{{note.case_stage}}</p>
   </ion-card-content>
 
   <ion-item>
     <button primary clear item-left>
-      <ion-icon name="thumbs-up"></ion-icon>
-      <div>12 Likes</div>
-    </button>
-    <button primary clear item-left>
       <ion-icon name="text"></ion-icon>
       <div>4 Comments</div>
     </button>
+
+
+
     <ion-note item-right>
-      11h ago
+        {{note.updated_date}}
     </ion-note>
+
+    <button (click)="update(note)" primary clear item-right>
+      <ion-icon name="heart"></ion-icon>
+      <div>Update</div>
+    </button>
+
   </ion-item>
 
 </ion-card>
 
 
-
-  </ion-slide>
-
-
-</ion-slides>
 </ion-content>

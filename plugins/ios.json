@@ -30,7 +30,20 @@
         },
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "com.ionicframework.myionic2project916680"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.ionicframework.myionic2project916680"
+        },
+        "cordova-plugin-spinner-dialog": {
+            "PACKAGE_NAME": "com.ionicframework.myionic2project916680"
+        },
+        "cordova-plugin-email-composer": {
+            "PACKAGE_NAME": "com.ionicframework.myionic2project916680"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "com.ionicframework.myionic2project916680"
+        }
+    }
 }
